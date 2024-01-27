@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <title>probability accuracy</title>
+    <style>
+      .prob {
+        width: 550px;
+        height: 500px;
+        border: 1px solid black;
+        margin: 3rem 16rem;
+        background: orange;
+        display: flex;
+        flex-direction: column;
+      }
+      .prob h2 {
+        margin: 1rem 2.5rem;
+        white-space: nowrap;
+      }
+      .container {
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+        margin-left: 7rem;
+        margin-top: 1rem;
+      }
+      .prob input {
+        padding: 1rem;
+        width: 15rem;
+      }
+      .start {
+        padding: 0rem;
+        width: 4rem;
+        line-height: 0rem;
+        height: 3.5rem;
+        position: relative;
+        top: 2px;
+        text-align: center;
+        border-radius: 15px;
+        background: rgba(255, 0, 0, 0.043);
+      }
+
+      .box {
+        border: 1px solid black;
+        width: 80%;
+        height: 70%;
+        margin: 2rem 3rem;
+        background: aqua;
+        /* display: grid;
+      grid-template-columns: 1fr 1fr 1fr ;
+      gap: 0.5rem; */
+
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 1rem;
+        text-align: center;
+        overflow: hidden;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+      }
+      .box div input {
+        width: 100px;
+        margin-top: 0rem;
+        object-fit: contain;
+      }
+      .a,
+      .b,
+      .c,
+      .d,
+      .e,
+      .f {
+        display: flex;
+        flex-direction: column;
+      }
+      .box div input::placeholder {
+        text-align: center;
+      }
+
+      .H61,
+      .H62,
+      .H63,
+      .H64,
+      .H65,
+      .H65,
+      .H66 {
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+      h2 img {
+        width: 4rem;
+        mix-blend-mode: color-burn;
+      }
+      .start img {
+        width: 3rem;
+        mix-blend-mode: color-burn;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="prob">
+      <h2>Probability Accuracy Checker <img src="./image/images.png" /></h2>
+
+      <div class="container">
+        <input type="number" placeholder="enter any number" class="value" />
+        <button class="start" onclick="startProgram()">
+          <img src="./image/images.png" />
+        </button>
+      </div>
+
+      <div class="box">
+        <div class="a">
+          <input type="number" id="a" placeholder="0" readonly />
+          <label for="a">1st-occurrence</label>
+          <h6 class="H61"></h6>
+        </div>
+        <div class="b">
+          <input type="number" id="b" placeholder="0" readonly />
+          <label for="b">2nd-occurrence</label>
+          <h6 class="H62"></h6>
+        </div>
+        <div class="c">
+          <input type="number" id="c" placeholder="0" readonly />
+          <label for="c">3rd-occurrence</label>
+          <h6 class="H63"></h6>
+        </div>
+        <div class="d">
+          <input type="number" id="d" placeholder="0" readonly />
+          <label for="d">4th-occurrence</label>
+          <h6 class="H64"></h6>
+        </div>
+        <div class="e">
+          <input type="number" id="e" placeholder="0" readonly />
+          <label for="e">5th-occurrence</label>
+          <h6 class="H65"></h6>
+        </div>
+        <div class="f">
+          <input type="number" id="f" placeholder="0" readonly />
+          <label for="f">6th-occurrence</label>
+          <h6 class="H66"></h6>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const value = document.querySelector(".value");
+      const btn = document.querySelector(".start");
+      const a = document.querySelector("#a");
+      const b = document.querySelector("#b");
+      const c = document.querySelector("#c");
+      const d = document.querySelector("#d");
+      const e = document.querySelector("#e");
+      const f = document.querySelector("#f");
+
+      let startProgram = () => {
+        let n = value.value;
+        let fcount = 0,
+          sCount = 0,
+          tCount = 0,
+          fourthCount = 0,
+          fiveCount = 0,
+          sixCount = 0;
+
+        for (let i = 1; i <= n; i++) {
+          let v = Math.floor(Math.random() * 6 + 1);
+          if (v == 1) fcount++;
+          else if (v == 2) sCount++;
+          else if (v == 3) tCount++;
+          else if (v == 4) fourthCount++;
+          else if (v == 5) fiveCount++;
+          else if (v == 6) sixCount++;
+        }
+
+        a.placeholder = `${fcount}`;
+        b.placeholder = `${sCount}`;
+        c.placeholder = `${tCount}`;
+        d.placeholder = `${fourthCount}`;
+        e.placeholder = `${fiveCount}`;
+        f.placeholder = `${sixCount}`;
+
+     document.querySelector(".H61").innerText = `probability : ${((fcount / n) *100).toFixed(2)}%`;
+     document.querySelector(".H62").innerText = `probability : ${((sCount / n) *100).toFixed(2)}%`;
+     document.querySelector(".H63").innerText = `probability : ${((tCount / n) *100).toFixed(2)}%`;
+     document.querySelector(".H64").innerText = `probability : ${((fourthCount / n) *100).toFixed(2)}%`;
+     document.querySelector(".H65").innerText = `probability : ${((fiveCount / n) *100).toFixed(2)}%`;
+     document.querySelector(".H66").innerText = `probability : ${((sixCount / n) *100).toFixed(2)}%`;
+
+      };
+    </script>
+  </body>
+</html>
